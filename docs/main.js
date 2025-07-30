@@ -1,49 +1,114 @@
-let count = 0;
+let current = "";
 
-const btn           = document.getElementById("btn");
-const displayCount  = document.getElementById("mm");
-const message1      = document.getElementById("messg");
-const message2      = document.getElementById("messg2");
-const inputNumber   = document.getElementById("putin");
-const submitBtn     = document.getElementById("btn2");
-const finalMessage  = document.getElementById("ley");
 
-btn.onclick = () => {
-  count++;
-  displayCount.textContent = count;
 
-  if (count === 3) alert("stop");
-  if (count === 4) alert("I said, STOP");
-  if (count === 5) alert("HEY!");
+function addOperator(op) {
+  let display = document.getElementById("display");
+  let lastChar = display.value.slice(-1);
 
-  if (count === 6) {
-    btn.style.display = "none";
-
-    setTimeout(() => message1.style.display     = "block", 1000);
-    setTimeout(() => message2.style.display     = "block", 2000);
-    setTimeout(() => inputNumber.style.display  = "block", 3000);
-    setTimeout(() => submitBtn.style.display    = "block", 4000);
-    setTimeout(() => message2.style.display     = "none",  4500);
-    setTimeout(() => message1.style.display     = "none",  4500);
-    setTimeout(() => finalMessage.style.display = "block", 4500);
-  }
-};
-
-function checkNumber() {
-  const num = parseInt(inputNumber.value);
-
-  if (num === 6) {
-    alert("Correct!");
-    setTimeout(() => alert("Good bye!"), 1000);
-    setTimeout(() => window.close(), 1500);
-  } 
-    else if(num === 5) {
-      alert('close!');
-    }
-    else if(num === 7) { 
-      alert(num + "? Too high, but close!");
-    }
-    else {
-    alert(num + ", really?");
+  if (!"+-*/.^".includes(lastChar)) {
+    display.value += op;
   }
 }
+
+
+
+document.getElementById("btn1").onclick = 
+  function() {
+     document.getElementById("display").value += "1";
+  
+  }
+document.getElementById("btnclear").onclick = 
+  function() {
+    current = "";
+    display.value = "";
+  
+}
+document.getElementById("btn2").onclick = 
+  function() {
+     document.getElementById("display").value += "2";
+  
+  }
+document.getElementById("btn3").onclick = 
+  function() {
+     document.getElementById("display").value += "3";
+  
+  }
+document.getElementById("btn4").onclick = 
+  function() {
+     document.getElementById("display").value += "4";
+  
+  }
+document.getElementById("btn5").onclick = 
+  function() {
+     document.getElementById("display").value += "5";
+  
+  }
+document.getElementById("btn6").onclick = 
+  function() {
+     document.getElementById("display").value += "6";
+  
+  }
+document.getElementById("btn7").onclick = 
+  function() {
+     document.getElementById("display").value += "7";
+  
+  }
+document.getElementById("btn8").onclick = 
+  function() {
+     document.getElementById("display").value += "8";
+  
+  }
+document.getElementById("btn9").onclick = 
+  function() {
+     document.getElementById("display").value += "9";
+  
+  }
+document.getElementById("btn0").onclick = 
+  function() {
+     document.getElementById("display").value += "0";
+  
+  }
+document.getElementById("btnplus").onclick = 
+  function() {
+     addOperator("+");
+  
+  }
+document.getElementById("btnminus").onclick = 
+  function() {
+     addOperator("-");
+  
+  }
+document.getElementById("btntimes").onclick = 
+  function() {
+     addOperator("*");
+  
+  }
+document.getElementById("decimal").onclick = 
+  function() {
+    addOperator(".");
+  }
+  
+  
+document.getElementById("btnequals").onclick =
+  function() {
+    let input = document.getElementById("display").value;
+    input = input.replace(/\^/g, "**");
+    
+    try {
+      let result = eval(input);
+      document.getElementById("display").value = result;
+      
+    } catch (error) {
+      document.getElementById("display").value = "error";
+      }
+    
+  }
+  
+  
+document.getElementById("btndvsn").onclick = () => {
+  addOperator("/");
+}
+document.getElementById("tothepowerof").onclick = function () {
+  addOperator("^");
+} 
